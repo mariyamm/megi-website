@@ -664,6 +664,50 @@
     display: inline-block;
   }
 }
+
+/* Force hero image above text on tablet/mobile */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 0.2em;           /* Remove top/bottom padding, minimal side padding */
+    min-height: unset;
+    height: auto;
+    margin-top: -2.5em;         /* Move hero up even more */
+  }
+  .hero-image {
+    order: 1;
+    width: 100vw;
+    min-height: 240px;          /* Slightly bigger image */
+    max-width: 100vw;
+    margin: 0 auto 0.1em auto;  /* Remove top margin, minimal bottom margin */
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    border-radius: 0;           /* Remove any rounding for edge-to-edge look */
+  }
+  .hero-text {
+    order: 2;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+    width: 100%;
+    animation: none;
+    margin-bottom: 0.5em;
+    margin-top: 0;              /* Remove any top margin */
+  }
+  .hero h2 {
+    font-size: 0.95rem;
+    margin-bottom: 0.7em;
+    margin-top: 0;
+  }
+  .hero-text .cta-button {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
   </style>
 </head>
 <body>
