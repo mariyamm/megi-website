@@ -744,6 +744,239 @@
   position: relative;
   overflow: hidden;
 }
+
+/* =========================
+   SPECIALTIES SECTION
+   (matches <section class="specialties-section" id="specialties"> in HTML)
+   ========================= */
+.specialties-section {
+  background: linear-gradient(120deg, #fff 80%, #fdf5f7 100%);
+  padding: 4em 2em 4em 2em;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(176,43,80,0.06);
+  margin: 3em auto 0 auto;
+  max-width: 1200px;
+}
+
+/* Specialties section title (<h3 class="specialties-title">) */
+.specialties-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--raspberry);
+  text-align: center;
+  margin-bottom: 2.5em;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+/* Grid container for specialty cards (<div class="specialties-grid">) */
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2.5em;
+  align-items: stretch;
+}
+
+/* Individual specialty card (<div class="specialty-card">) */
+.specialty-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid #fbe7ef;
+  box-shadow: 0 4px 24px 0 rgba(197,179,88,0.07);
+  padding: 2.5em 2em 2em 2em;
+  text-align: center;
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Specialty card hover effect */
+.specialty-card:hover {
+  box-shadow: 0 12px 36px 0 rgba(176,43,80,0.13);
+  border-color: var(--gold);
+  transform: translateY(-6px) scale(1.025);
+}
+
+/* Icon inside specialty card (<span class="specialty-icon">) */
+.specialty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--raspberry) 60%, var(--gold) 100%);
+  color: #fff;
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 1.2em auto;
+  font-size: 2.1rem;
+  box-shadow: 0 2px 12px 0 rgba(176,43,80,0.10);
+  transition: background 0.3s;
+}
+
+/* Icon hover effect */
+.specialty-card:hover .specialty-icon {
+  background: linear-gradient(135deg, var(--gold) 60%, var(--raspberry) 100%);
+  color: var(--raspberry);
+}
+
+/* Specialty card title (<h4>) */
+.specialty-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--raspberry);
+  margin-bottom: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Specialty card description (<p>) */
+.specialty-card p {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  color: #222;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* =========================
+   RESPONSIVE STYLES
+   ========================= */
+@media (max-width: 900px) {
+  /* Specialties section responsive adjustments */
+  .specialties-section {
+    padding: 2.5em 1em;
+    border-radius: 0;
+  }
+  .specialties-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+  .specialty-card {
+    padding: 2em 1em 1.5em 1em;
+  }
+}
+
+/* Responsive mobile menu logic */
+const menuIcon = document.getElementById('menu-icon');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuBtn = document.getElementById('close-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+const overlay = document.getElementById('mobile-menu-overlay');
+
+function openMenu() {
+  mobileMenu.classList.add('open');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuIcon.addEventListener('click', () => {
+  if (mobileMenu.classList.contains('open')) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+closeMenuBtn.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+// Optional: allow keyboard navigation
+menuIcon.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    menuIcon.click();
+  }
+});
+
+// filepath: c:\Users\a884470\Megi_website\index.html
+const text = "Legal by Miglena Dimitrova.";
+const initials = "LM.";
+const target = document.getElementById("logo-text");
+
+function animateLogo() {
+  if (window.innerWidth > 1024) {
+    let i = 0;
+    target.textContent = "";
+    target.style.opacity = 1;
+    function typeFull() {
+      if (i < text.length) {
+        target.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeFull, 60);
+      } else {
+        setTimeout(() => {
+          target.style.opacity = 0;
+          setTimeout(() => {
+            target.textContent = initials;
+            target.style.opacity = 1;
+            setTimeout(() => {
+              target.style.opacity = 0;
+              setTimeout(() => {
+                target.textContent = "";
+                target.style.opacity = 1;
+                animateLogo(); // Loop again
+              }, 400);
+            }, 1200);
+          }, 400);
+        }, 1200);
+      }
+    }
+    typeFull();
+  } else {
+    target.textContent = "";
+    target.style.opacity = 1;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', animateLogo);
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1024) {
+    animateLogo();
+  } else {
+    target.textContent = "";
+    target.style.opacity = 1;
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate about-image if present
+  const aboutImg = document.querySelector('.about-image');
+  if (aboutImg) {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            aboutImg.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(aboutImg);
+  }
+
+  // Animate #about background when in viewport (always runs)
+  const aboutSection = document.getElementById('about');
+  if (aboutSection) {
+    const bgObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            aboutSection.classList.add('bg-animate');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    bgObserver.observe(aboutSection);
+  }
+});
   </style>
 </head>
 <body>
@@ -857,6 +1090,54 @@
       <a href="#contact" class="cta-button">Ready to Transform Your Legal Experience?</a>
     </div>
   </section>
+
+  <!-- =========================
+     SPECIALTIES SECTION
+     This section highlights the main legal specialties/services offered.
+     ========================= -->
+<section class="section specialties-section" id="specialties">
+  <!-- Section title -->
+  <h3 class="specialties-title">Specialized Legal Services</h3>
+  <!-- Grid container for all specialties -->
+  <div class="specialties-grid">
+    <!-- Specialty 1: Corporate & Commercial Law -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-building"></i></span>
+      <h4>Corporate & Commercial Law</h4>
+      <p>Company incorporation, shareholder matters, compliance, and legal structure for growth.</p>
+    </div>
+    <!-- Specialty 2: Startup & Early-Stage Advisory -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-lightbulb"></i></span>
+      <h4>Startup & Early-Stage Advisory</h4>
+      <p>Tailored support for founders — shareholder agreements, IP, investor readiness, and funding.</p>
+    </div>
+    <!-- Specialty 3: Commercial Contracts -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-file-contract"></i></span>
+      <h4>Commercial Contracts</h4>
+      <p>Commercial agreements that protect your interests and keep business moving.</p>
+    </div>
+    <!-- Specialty 4: Technology & Digital Law -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-code"></i></span>
+      <h4>Technology & Digital Law</h4>
+      <p>Legal guidance for tech platforms, AI, SaaS, and digital products — speaking your language.</p>
+    </div>
+    <!-- Specialty 5: M&A and Strategic Transactions -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-handshake"></i></span>
+      <h4>M&A and Strategic Transactions</h4>
+      <p>Due diligence, deal structuring, negotiations — your legal partner in mergers and acquisitions.</p>
+    </div>
+    <!-- Specialty 6: Competition & Antitrust -->
+    <div class="specialty-card">
+      <span class="specialty-icon"><i class="fas fa-balance-scale"></i></span>
+      <h4>Competition & Antitrust</h4>
+      <p>Helping you navigate fair competition, dominant market positions, and merger control clearance.</p>
+    </div>
+  </div>
+</section>
 
 <script>
 // Responsive mobile menu logic

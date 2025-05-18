@@ -1,0 +1,94 @@
+.specialties-section {
+  background: linear-gradient(120deg, #fff 80%, #fdf5f7 100%);
+  padding: 4em 2em 4em 2em;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(176,43,80,0.06);
+  margin: 3em auto 0 auto;
+  max-width: 1200px;
+}
+
+.specialties-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--raspberry);
+  text-align: center;
+  margin-bottom: 2.5em;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2.5em;
+  align-items: stretch;
+}
+
+.specialty-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid #fbe7ef;
+  box-shadow: 0 4px 24px 0 rgba(197,179,88,0.07);
+  padding: 2.5em 2em 2em 2em;
+  text-align: center;
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.specialty-card:hover {
+  box-shadow: 0 12px 36px 0 rgba(176,43,80,0.13);
+  border-color: var(--gold);
+  transform: translateY(-6px) scale(1.025);
+}
+
+.specialty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--raspberry) 60%, var(--gold) 100%);
+  color: #fff;
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 1.2em auto;
+  font-size: 2.1rem;
+  box-shadow: 0 2px 12px 0 rgba(176,43,80,0.10);
+  transition: background 0.3s;
+}
+
+.specialty-card:hover .specialty-icon {
+  background: linear-gradient(135deg, var(--gold) 60%, var(--raspberry) 100%);
+  color: var(--raspberry);
+}
+
+.specialty-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--raspberry);
+  margin-bottom: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.specialty-card p {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  color: #222;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .specialties-section {
+    padding: 2.5em 1em;
+    border-radius: 0;
+  }
+  .specialties-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+  .specialty-card {
+    padding: 2em 1em 1.5em 1em;
+  }
+}
