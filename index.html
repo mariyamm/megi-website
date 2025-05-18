@@ -529,6 +529,141 @@
         flex: 1 1 100%;
       }
     }
+
+    /* Hide menu icon and mobile menu on desktop */
+.menu-icon,
+.mobile-menu,
+.mobile-menu-overlay {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+  nav {
+    display: none;
+  }
+  .menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    z-index: 2002;
+    margin-left: 1em;
+  }
+  .menu-icon span {
+    height: 4px;
+    width: 100%;
+    background: var(--raspberry);
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: block;
+  }
+  /* Sidebar menu */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -4px 0 24px rgba(176,43,80,0.08);
+    z-index: 2001;
+    padding: 2em 1.5em 1.5em 1.5em;
+    transition: right 0.35s cubic-bezier(.77,0,.18,1);
+    border-left: 4px solid var(--gold);
+  }
+  .mobile-menu.open {
+    right: 0;
+  }
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  .mobile-logo {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--raspberry);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .close-menu {
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: var(--gold);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0.2em;
+    transition: color 0.2s;
+  }
+  .close-menu:hover {
+    color: var(--raspberry);
+  }
+  .mobile-menu a {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    color: var(--raspberry);
+    text-decoration: none;
+    margin: 1em 0;
+    padding: 0.7em 0;
+    border-bottom: 1px solid #f5e9ec;
+    transition: color 0.2s;
+    display: block;
+    text-align: left;
+  }
+  .mobile-menu a:last-child {
+    border-bottom: none;
+  }
+  .mobile-menu a:hover {
+    color: var(--gold);
+  }
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(176,43,80,0.08);
+    z-index: 2000;
+    transition: opacity 0.3s;
+  }
+  .mobile-menu.open ~ .mobile-menu-overlay,
+  .mobile-menu-overlay.open {
+    display: block;
+    opacity: 1;
+  }
+}
+
+/* Desktop: show animated logo, hide LM. */
+#logo-text {
+  display: inline;
+}
+@media (max-width: 1024px) {
+  #logo-text {
+    display: none !important;
+  }
+  .logo::after {
+    content: "LM.";
+    font-family: var(--font-serif);
+    color: var(--raspberry);
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    display: inline;
+    margin-left: 0;
+  }
+  .logo {
+    justify-content: flex-start;
+    text-align: left;
+    margin-left: 0;
+    display: inline-block;
+  }
+}
   </style>
 </head>
 <body>
@@ -542,6 +677,24 @@
       <a href="#cta-session">Consultation</a>
       <a href="#contact">Contact</a>
     </nav>
+    <!-- Mobile menu icon -->
+    <div class="menu-icon" id="menu-icon" aria-label="Open menu" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <!-- Mobile sidebar menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-header">
+        <span class="mobile-logo">LM.</span>
+        <button class="close-menu" id="close-menu" aria-label="Close menu">&times;</button>
+      </div>
+      <a href="#hero" class="mobile-link">Home</a>
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#specialties" class="mobile-link">Services</a>
+      <a href="#testimonials" class="mobile-link">Testimonials</a>
+      <a href="#cta-session" class="mobile-link">Consultation</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
   </header>
 
   <section class="hero" id="hero">
@@ -623,36 +776,92 @@
       <a href="#contact" class="cta-button">Ready to Transform Your Legal Experience?</a>
     </div>
   </section>
+
 <script>
-  const text = ["Legal ", "by ", "Miglena ", "Dimitrova."];
-  const target = document.getElementById("logo-text");
-  let wordIndex = 0;
-  let letterIndex = 0;
-  function typeLogo() {
-    if (wordIndex < text.length) {
-      const word = text[wordIndex];
-      if (letterIndex < word.length) {
-        target.textContent += word.charAt(letterIndex);
-        letterIndex++;
-        setTimeout(typeLogo, 80);
+// Responsive mobile menu logic
+const menuIcon = document.getElementById('menu-icon');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuBtn = document.getElementById('close-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+const overlay = document.getElementById('mobile-menu-overlay');
+
+function openMenu() {
+  mobileMenu.classList.add('open');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuIcon.addEventListener('click', () => {
+  if (mobileMenu.classList.contains('open')) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+closeMenuBtn.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+// Optional: allow keyboard navigation
+menuIcon.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    menuIcon.click();
+  }
+});
+
+// filepath: c:\Users\a884470\Megi_website\index.html
+const text = "Legal by Miglena Dimitrova.";
+const initials = "LM.";
+const target = document.getElementById("logo-text");
+
+function animateLogo() {
+  if (window.innerWidth > 1024) {
+    let i = 0;
+    target.textContent = "";
+    target.style.opacity = 1;
+    function typeFull() {
+      if (i < text.length) {
+        target.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeFull, 60);
       } else {
-        wordIndex++;
-        letterIndex = 0;
-        setTimeout(typeLogo, 100);
+        setTimeout(() => {
+          target.style.opacity = 0;
+          setTimeout(() => {
+            target.textContent = initials;
+            target.style.opacity = 1;
+            setTimeout(() => {
+              target.style.opacity = 0;
+              setTimeout(() => {
+                target.textContent = "";
+                target.style.opacity = 1;
+                animateLogo(); // Loop again
+              }, 400);
+            }, 1200);
+          }, 400);
+        }, 1200);
       }
     }
+    typeFull();
+  } else {
+    target.textContent = "";
+    target.style.opacity = 1;
   }
-  window.addEventListener('DOMContentLoaded', () => {
-  typeLogo();
-  setTimeout(() => {
-    target.textContent = 'LM.';
-    setTimeout(() => {
-      target.textContent = '';
-      wordIndex = 0;
-      letterIndex = 0;
-      typeLogo();
-    }, 2000);
-  }, 2500);
+}
+
+window.addEventListener('DOMContentLoaded', animateLogo);
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1024) {
+    animateLogo();
+  } else {
+    target.textContent = "";
+    target.style.opacity = 1;
+  }
 });
 </script>
 </body>
