@@ -424,64 +424,149 @@
     }
 
     /* Why Work With Me Section */
-    #why-work-with-me {
-      text-align: center;
-      padding: 4em 2em;
-      background-color: var(--white);
-    }
-
-    #why-work-with-me h3 {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      color: var(--raspberry);
-      margin-bottom: 2em;
-      text-align: center;
-    }
-
-    .icon-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2em;
-      justify-content: center;
-    }
-
-    .icon-box {
-      flex: 1 1 calc(25% - 2em);
-      max-width: 300px;
-      background: #fdf5f7;
-      padding: 1.5em;
-      border-radius: 8px;
-      border-left: 4px solid var(--raspberry);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .icon-box i {
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 1em;
-    }
-
-    .icon-box strong {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      color: var(--raspberry);
-      display: block;
-      margin-bottom: 0.5em;
-    }
-
-    .icon-box p {
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      color: #000;
-      line-height: 1.6;
-    }
-
-    .icon-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
+:root {
+  --raspberry: #B02B50;
+  --gold: #C5B358;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+.why-luxury-split {
+  width: 100%;
+  max-width: 1250px;
+  margin: 4em auto;
+  padding: 0;
+}
+.why-luxury-inner {
+  display: flex;
+  background: linear-gradient(120deg, #fff 80%, #fdf5f7 100%);
+  border-radius: 38px;
+  box-shadow: 0 7px 38px 0 rgba(176,43,80,0.09);
+  overflow: hidden;
+}
+.why-luxury-left {
+  flex: 0 0 35%;
+  min-width: 280px;
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  border-right: 3.5px solid var(--gold);
+  padding: 3.2em 2.2em 3.2em 3em;
+  position: relative;
+}
+.luxury-header {
+  width: 100%;
+}
+.luxury-header h2 {
+  font-family: var(--font-serif);
+  color: var(--raspberry);
+  font-size: 2.55rem;
+  margin-bottom: 0.33em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.luxury-accent {
+  width: 50px;
+  height: 4.5px;
+  background: linear-gradient(90deg, var(--gold), var(--raspberry));
+  border-radius: 8px;
+  margin-bottom: 2.1em;
+  opacity: 0.6;
+}
+.luxury-desc {
+  font-family: var(--font-sans);
+  color: #232324;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  opacity: 0.88;
+}
+.why-luxury-right {
+  flex: 1 1 0%;
+  background: linear-gradient(113deg, #fff8fd 67%, #fff 100%);
+  padding: 2.4em 2.5em 2.4em 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.luxury-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.7em 2.4em;
+  width: 100%;
+  max-width: 680px;
+}
+.luxury-card {
+  background: #fff;
+  border-radius: 19px;
+  border: 1.4px solid #fbe7ef;
+  box-shadow: 0 2px 16px 0 rgba(197,179,88,0.09);
+  padding: 2em 1.2em 1.5em 1.2em;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.22s, border-color 0.21s, transform 0.16s;
+  min-width: 0;
+}
+.luxury-card:hover {
+  box-shadow: 0 7px 30px 0 rgba(176,43,80,0.14);
+  border-color: var(--gold);
+  transform: translateY(-4px) scale(1.03);
+}
+.luxury-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--raspberry) 60%, var(--gold) 100%);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1em;
+  box-shadow: 0 2px 10px 0 rgba(176,43,80,0.09);
+  transition: background 0.21s, color 0.18s;
+}
+.luxury-card:hover .luxury-icon {
+  background: linear-gradient(135deg, var(--gold) 80%, var(--raspberry) 100%);
+  color: var(--raspberry);
+}
+.luxury-card strong {
+  font-family: var(--font-serif);
+  color: var(--raspberry);
+  font-size: 1.11rem;
+  font-weight: 700;
+  margin-bottom: 0.32em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.luxury-card p {
+  font-family: var(--font-sans);
+  color: #242124;
+  font-size: 1.03rem;
+  margin: 0;
+  line-height: 1.55;
+  opacity: 0.92;
+}
+@media (max-width: 900px) {
+  .why-luxury-inner {
+    flex-direction: column;
+    border-radius: 19px;
+  }
+  .why-luxury-left {
+    border-right: none;
+    border-bottom: 3.5px solid var(--gold);
+    padding: 2.3em 1.1em 2em 1.5em;
+  }
+  .why-luxury-right {
+    padding: 1.3em 0.7em 1.3em 0.7em;
+  }
+  .luxury-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25em 0;
+  }
+}
     .button-container {
       margin-top: 3em;
       text-align: center;
@@ -838,6 +923,89 @@
   margin-bottom: 0;
 }
 
+
+/* =========================
+   CLIENTS SECTION
+   ========================= */
+  
+  .clients-section {
+    background: linear-gradient(90deg, #fdf5f7 60%, #fffbe7 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(176,43,80,0.07);
+    margin: 2.5em 0 0 0;           /* Remove auto side margins for full width */
+    max-width: 100vw;              /* Full width */
+    width: 100vw;
+    padding: 2.5em 0 2em 0;        /* Remove side padding for edge-to-edge */
+    text-align: center;
+    position: relative;
+  }
+  
+  .clients-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--raspberry);
+    margin-bottom: 0.5em;
+    letter-spacing: 0.04em;
+  }
+  
+  .clients-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;           /* Smaller text */
+    color: #232324;
+    margin-bottom: 1.5em;
+    opacity: 0.82;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .clients-animated {
+    font-family: var(--font-serif);
+    font-size: 2.7rem;
+    font-weight: bold;
+    text-transform: uppercase;      /* Make animated text ALL CAPS */
+    min-height: 3.5em;
+    display: inline-block;
+    /* Remove background, border-radius, box-shadow */
+    background: none;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+    color: var(--raspberry);        /* Use a strong color for visibility */
+    -webkit-text-fill-color: unset;
+    padding: 0;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  
+  .client-cursor {
+    color: var(--raspberry);
+    font-weight: 900;
+    animation: blink-cursor 1s steps(1) infinite;
+    font-size: 1.2em;
+    margin-left: 2px;
+  }
+  
+  @keyframes blink-cursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  
+  @media (max-width: 600px) {
+    .clients-section {
+      padding: 1.5em 0 1.2em 0;
+      max-width: 100vw;
+    }
+    .clients-title {
+      font-size: 1.3rem;
+    }
+    .clients-animated {
+      font-size: 1.3rem;
+      padding: 0.2em 0.5em;
+      min-height: 2.2em;
+    }
+  }
+
 /* =========================
    RESPONSIVE STYLES
    ========================= */
@@ -920,54 +1088,79 @@
     </div>
   </section>
 
-  <section class="section" id="why-work-with-me">
-    <h3>Why Work With Me</h3>
-    <div class="icon-row">
-      <div class="icon-box">
-        <i class="fas fa-handshake"></i>
-        <strong>Partnership-Driven</strong>
-        <p>I build lasting relationships grounded in legal expertise, innovation, and real-world results.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-lightbulb"></i>
-        <strong>Strategic, Not Just Legal</strong>
-        <p>I go beyond standard legal advice by understanding your business model, market, and goals — so every legal move supports your broader strategy.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-comments"></i>
-        <strong>Clear Communication. Real Results.</strong>
-        <p>I listen closely, speak plainly, and stay focused on delivering tangible value, not just legal theory.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-file-invoice-dollar"></i>
-        <strong>Transparent Pricing</strong>
-        <p>With fixed-fee pricing, there are no surprises. Quotes, files, and invoices are always shared clearly and up front.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-robot"></i>
-        <strong>Smart Legal Tech, Human Insight</strong>
-        <p>I use modern legal tech to streamline your experience — but the connection, guidance, and judgment are always human.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-chart-line"></i>
-        <strong>Growth-Focused Legal Support</strong>
-        <p>From startups to established companies, I craft legal strategies that protect and drive your growth at every stage.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-phone-alt"></i>
-        <strong>Responsive and Accessible</strong>
-        <p>You won’t be left waiting. I’m committed to your success and available when it matters most.</p>
-      </div>
-      <div class="icon-box">
-        <i class="fas fa-gavel"></i>
-        <strong>Legal Expertise</strong>
-        <p>Decades of experience in corporate, competition, and tech law to guide your business decisions.</p>
-      </div>
-    </div>
-    <div class="button-container">
-      <a href="#contact" class="cta-button">Ready to Transform Your Legal Experience?</a>
+   
+  <section class="clients-section" id="clients">
+    <h1 class="clients-title">Clients</h1>
+    <p class="clients-desc">
+      I work with innovative businesses, international investors, and growth-oriented companies across Europe and beyond. My clients include:
+    </p>
+    <div class="clients-animated">
+      <span id="client-type"></span>
+      <span class="client-cursor">|</span>
     </div>
   </section>
+
+
+<section class="why-luxury-split">
+  <div class="why-luxury-inner">
+    <!-- LEFT SIDE -->
+    <div class="why-luxury-left">
+      <div class="luxury-header">
+        <h2>Why Work With Me</h2>
+        <div class="luxury-accent"></div>
+        <p class="luxury-desc">
+          Experience the power of legal partnership tailored to your business.<br>
+          I bring strategy, tech, and a human approach—so you can focus on what you do best.
+        </p>
+      </div>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="why-luxury-right">
+      <div class="luxury-cards-grid">
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-handshake"></i></span>
+          <strong>Partnership-Driven</strong>
+          <p>I build lasting relationships grounded in legal expertise and real results.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-lightbulb"></i></span>
+          <strong>Strategic, Not Just Legal</strong>
+          <p>Legal moves that align with your business model, market, and goals.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-comments"></i></span>
+          <strong>Clear Communication</strong>
+          <p>I speak plainly and stay focused on delivering tangible value.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+          <strong>Transparent Pricing</strong>
+          <p>No surprises. Everything is shared up front, always.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-robot"></i></span>
+          <strong>Smart Legal Tech</strong>
+          <p>Modern tech streamlines your experience—human connection is core.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-chart-line"></i></span>
+          <strong>Growth-Focused</strong>
+          <p>Legal strategies that protect and drive your growth.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-phone-alt"></i></span>
+          <strong>Responsive</strong>
+          <p>Available when it matters. You won’t be left waiting.</p>
+        </div>
+        <div class="luxury-card">
+          <span class="luxury-icon"><i class="fas fa-gavel"></i></span>
+          <strong>Legal Expertise</strong>
+          <p>Decades in corporate, competition & tech law at your side.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- =========================
      SPECIALTIES SECTION
@@ -1139,6 +1332,47 @@ document.addEventListener('DOMContentLoaded', function() {
     bgObserver.observe(aboutSection);
   }
 });
+
+// ...existing code...
+// Animated clients typing effect
+const clientTypes = [
+  "Tech companies",
+  "International corporations",
+  "Founders and entrepreneurs",
+  "In-house legal teams",
+  "Private investors and holding groups"
+];
+const clientTarget = document.getElementById("client-type");
+let clientIndex = 0;
+let charIndex = 0;
+let typing = true;
+
+function typeClient() {
+  if (!clientTarget) return;
+  if (typing) {
+    if (charIndex < clientTypes[clientIndex].length) {
+      clientTarget.textContent += clientTypes[clientIndex][charIndex];
+      charIndex++;
+      setTimeout(typeClient, 60);
+    } else {
+      typing = false;
+      setTimeout(typeClient, 1200);
+    }
+  } else {
+    if (charIndex > 0) {
+      clientTarget.textContent = clientTypes[clientIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(typeClient, 30);
+    } else {
+      typing = true;
+      clientIndex = (clientIndex + 1) % clientTypes.length;
+      setTimeout(typeClient, 400);
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', typeClient);
+// ...existing code...
 </script>
 </body>
 </html>
