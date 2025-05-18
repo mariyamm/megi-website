@@ -941,6 +941,27 @@
   margin-bottom: 0;
 }
 
+/* Specialty image styles */
+.specialty-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 1.2em auto;
+  overflow: hidden;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 50%; /* Make the container a perfect circle */
+}
+.specialty-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%; /* Make the image itself a perfect circle */
+}
 
 /* =========================
    CLIENTS SECTION
@@ -1191,37 +1212,49 @@
   <div class="specialties-grid">
     <!-- Specialty 1: Corporate & Commercial Law -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-building"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/corporate.jpg" alt="Corporate Law">
+      </span>
       <h4>Corporate & Commercial Law</h4>
       <p>Company incorporation, shareholder matters, compliance, and legal structure for growth.</p>
     </div>
     <!-- Specialty 2: Startup & Early-Stage Advisory -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-lightbulb"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/startup.jpg" alt="Startup Advisory">
+      </span>
       <h4>Startup & Early-Stage Advisory</h4>
       <p>Tailored support for founders — shareholder agreements, IP, investor readiness, and funding.</p>
     </div>
     <!-- Specialty 3: Commercial Contracts -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-file-contract"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/contract.jpg" alt="Commercial Contracts">
+      </span>
       <h4>Commercial Contracts</h4>
       <p>Commercial agreements that protect your interests and keep business moving.</p>
     </div>
     <!-- Specialty 4: Technology & Digital Law -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-code"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/tech.jpg" alt="Technology & Digital Law">
+      </span>
       <h4>Technology & Digital Law</h4>
       <p>Legal guidance for tech platforms, AI, SaaS, and digital products — speaking your language.</p>
     </div>
     <!-- Specialty 5: M&A and Strategic Transactions -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-handshake"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/trans.jpg" alt="M&A and Strategic Transactions">
+      </span>
       <h4>M&A and Strategic Transactions</h4>
       <p>Due diligence, deal structuring, negotiations — your legal partner in mergers and acquisitions.</p>
     </div>
     <!-- Specialty 6: Competition & Antitrust -->
     <div class="specialty-card">
-      <span class="specialty-icon"><i class="fas fa-balance-scale"></i></span>
+      <span class="specialty-img specialty-img-circle">
+        <img src="/static/img/competition.jpg" alt="Competition & Antitrust">
+      </span>
       <h4>Competition & Antitrust</h4>
       <p>Helping you navigate fair competition, dominant market positions, and merger control clearance.</p>
     </div>
