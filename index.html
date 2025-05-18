@@ -129,9 +129,10 @@
     .cta-button {
       display: inline-block;
       margin-top: 2em;
-      padding: 1em 2em;
-      font-weight: bold;
-      border-radius: 5px;
+      padding: 0.65em 1.4em;    /* Smaller padding */
+      font-size: 1rem;          /* Slightly smaller font */
+      font-weight: 600;         /* Slightly less bold */
+      border-radius: 4px;       /* Slightly less rounded */
       text-decoration: none;
       background: var(--raspberry);
       color: white;
@@ -139,6 +140,7 @@
       position: relative;
       overflow: hidden;
       text-align: center;
+      box-shadow: 0 2px 10px 0 rgba(176,43,80,0.07); /* subtle shadow */
     }
 
     .cta-button::before {
@@ -441,7 +443,6 @@
   background: linear-gradient(120deg, #fff 80%, #fdf5f7 100%);
   border-radius: 38px;
   box-shadow: 0 7px 38px 0 rgba(176,43,80,0.09);
-  overflow: hidden;
 }
 .why-luxury-left {
   flex: 0 0 35%;
@@ -450,9 +451,21 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  border-right: 3.5px solid var(--gold);
+  /* border-right: 3.5px solid var(--gold); */
   padding: 3.2em 2.2em 3.2em 3em;
-  position: relative;
+  position: sticky;      /* Make sticky */
+  top: 4em;              /* Adjust for your header height */
+  height: fit-content;   /* Prevent stretching */
+  z-index: 2;
+}
+.luxury-header {
+  transition: transform 0.6s cubic-bezier(.77,0,.18,1); /* Smoother and slower */
+  will-change: transform;
+}
+@media (max-width: 900px) {
+  .luxury-header {
+    transform: none !important;
+  }
 }
 .luxury-header {
   width: 100%;
@@ -555,7 +568,7 @@
     border-radius: 19px;
   }
   .why-luxury-left {
-    border-right: none;
+    /* border-right: none; */ /* Already removed above */
     border-bottom: 3.5px solid var(--gold);
     padding: 2.3em 1.1em 2em 1.5em;
   }
@@ -574,14 +587,19 @@
 
     .cta-button {
       display: inline-block;
-      padding: 1em 2em;
-      font-size: 1.2rem;
-      font-weight: bold;
+      margin-top: 2em;
+      padding: 0.65em 1.4em;    /* Smaller padding */
+      font-size: 1rem;          /* Slightly smaller font */
+      font-weight: 600;         /* Slightly less bold */
+      border-radius: 4px;       /* Slightly less rounded */
       text-decoration: none;
       background: var(--raspberry);
       color: white;
-      border-radius: 5px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 10px 0 rgba(176,43,80,0.07); /* subtle shadow */
     }
 
     .cta-button:hover {
@@ -1331,9 +1349,33 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     bgObserver.observe(aboutSection);
   }
+
+  // Parallax scroll for Why Work With Me (desktop only)
+  function luxuryScrollEffect() {
+    const section = document.querySelector('.why-luxury-split');
+    const header = document.querySelector('.luxury-header');
+    if (!section || !header || window.innerWidth < 900) {
+      if (header) header.style.transform = '';
+      return;
+    }
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    // Only animate when section is in viewport
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      // Calculate scroll progress within the section (0 to 1)
+      const progress = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight + rect.height)));
+      // Move up to 40px down as you scroll through
+      header.style.transform = `translateY(${progress * 40}px)`;
+    } else {
+      header.style.transform = '';
+    }
+  }
+
+  window.addEventListener('scroll', luxuryScrollEffect);
+  window.addEventListener('resize', luxuryScrollEffect);
+  luxuryScrollEffect();
 });
 
-// ...existing code...
 // Animated clients typing effect
 const clientTypes = [
   "Tech companies",
@@ -1372,7 +1414,6 @@ function typeClient() {
 }
 
 document.addEventListener('DOMContentLoaded', typeClient);
-// ...existing code...
 </script>
 </body>
 </html>
