@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal by Miglena Dimitrova</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --raspberry: #B02B50;
+      --white: #ffffff;
+      --gold: #C5B358;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--white);
+      color: #000;
+    }
+
+    header {
+      background-color: var(--white);
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--raspberry);
+      text-decoration: none;
+    }
+
+    nav a {
+      margin-left: 1.5em;
+      text-decoration: none;
+      color: var(--raspberry);
+      font-weight: bold;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4em 2em;
+      background: linear-gradient(to right, #ffffff 50%, #fdf5f7 50%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: shine 5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0% { left: -75%; }
+      100% { left: 125%; }
+    }
+
+    .hero-text {
+      flex: 1;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--raspberry);
+      font-family: var(--font-serif);
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(30, end) forwards;
+      width: 0;
+      margin: 0 auto;
+      animation: typing 3s steps(30, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--raspberry); }
+    }
+
+    .hero h2 {
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin: 1em auto;
+      max-width: 500px;
+    }
+
+    .hero-image {
+      flex: 1;
+      min-height: 400px;
+      background: url('https://via.placeholder.com/600x400') center/cover no-repeat;
+      border-radius: 12px;
+      z-index: 2;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 1em 2em;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      background: var(--raspberry);
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      transition: left 0.75s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: var(--gold);
+      color: black;
+    }
+
+    .hero-text .cta-button {
+      margin: 2em auto 0;
+    }
+
+    .section {
+      padding: 3em 2em;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--raspberry);
+      margin-bottom: 1em;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+    }
+
+    .icon-box {
+      flex: 1 1 calc(33.333% - 1.5em);
+      background: #fdf5f7;
+      padding: 1.5em;
+      border-radius: 8px;
+      border-left: 4px solid var(--raspberry);
+      transition: all 0.3s ease;
+    }
+
+    .icon-box i {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.5em;
+    }
+
+    .testimonial {
+      background: #fff7f7;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    @media (max-width: 768px) {
+      .icon-box, .hero-text, .hero-image {
+        flex: 1 1 100%;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2em;
+      }
+    }
+    .logo {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--raspberry);
+  text-decoration: none;
+}
+
+  
+  to { width: 100%; }
+
+    to { width: 100%; }
+  
+.dot {
+  color: var(--raspberry);
+  font-weight: bold;
+  display: none;
+}
+
+.animated-logo {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--raspberry);
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: none;
+}
+
+    .section {
+      padding: 3em 2em;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--raspberry);
+      margin-bottom: 1em;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+    }
+
+    .icon-box {
+      flex: 1 1 calc(33.333% - 1.5em);
+      background: #fdf5f7;
+      padding: 1.5em;
+      border-radius: 8px;
+      border-left: 4px solid var(--raspberry);
+      transition: all 0.3s ease;
+    }
+
+    .icon-box i {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.5em;
+    }
+
+    .testimonial {
+      background: #fff7f7;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2em 1em;
+        min-height: 100vh; /* Full screen on mobile too */
+        height: auto;
+      }
+      .hero-image {
+        width: 100%;
+        min-height: 350px;
+        max-width: 100vw;
+        margin-bottom: 1em;
+        margin-left: 0;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+      }
+      .hero-text {
+        width: 100%;
+      }
+      .hero h1 {
+        font-size: 2rem;
+        width: 100%;
+        animation: none;
+      }
+      .hero h2 {
+        font-size: 1rem;
+      }
+    }
+    .logo {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--raspberry);
+  text-decoration: none;
+}
+
+  
+  to { width: 100%; }
+
+    to { width: 100%; }
+  
+.dot {
+  color: var(--raspberry);
+  font-weight: bold;
+  display: none;
+}
+
+.animated-logo {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--raspberry);
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: none;
+}
+
+    /* Who I Am Section */
+    #about {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4em 2em;
+      text-align: left;
+      color: #000;
+      background-color: var(--white);
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: url('static/img/megi_black.png') top right/cover no-repeat;
+      opacity: 0.1;
+      animation: slideIn 2s forwards;
+      z-index: 1;
+    }
+
+    @keyframes slideIn {
+      to {
+        left: 0;
+      }
+    }
+
+    #about .about-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      font-family: var(--font-sans);
+      margin: 0 auto;
+    }
+
+    #about h3 {
+      font-size: 2rem;
+      font-family: var(--font-serif);
+      margin-bottom: 1em;
+      color: var(--raspberry);
+      text-align: center;
+    }
+
+    .question-mark {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-left: 0.2em;
+      vertical-align: middle;
+    }
+
+    #about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5em;
+    }
+
+    #about .button-container {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    #about .cta-button {
+      font-size: 1rem;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+      #about .about-content {
+        max-width: 100%;
+      }
+    }
+
+    /* Why Work With Me Section */
+    #why-work-with-me {
+      text-align: center;
+      padding: 4em 2em;
+      background-color: var(--white);
+    }
+
+    #why-work-with-me h3 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--raspberry);
+      margin-bottom: 2em;
+      text-align: center;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      justify-content: center;
+    }
+
+    .icon-box {
+      flex: 1 1 calc(25% - 2em);
+      max-width: 300px;
+      background: #fdf5f7;
+      padding: 1.5em;
+      border-radius: 8px;
+      border-left: 4px solid var(--raspberry);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .icon-box i {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1em;
+    }
+
+    .icon-box strong {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--raspberry);
+      display: block;
+      margin-bottom: 0.5em;
+    }
+
+    .icon-box p {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    .icon-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-container {
+      margin-top: 3em;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1em 2em;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      background: var(--raspberry);
+      color: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--gold);
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .icon-box {
+        flex: 1 1 calc(50% - 1em);
+      }
+      .cta-button {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .icon-box {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo"><span id="logo-text"></span></a>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#specialties">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#cta-session">Consultation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h1>Smart Legal Thinking</h1>
+      <h2>Corporate & Commercial Law | Tech & Innovation | M&A & Competition</h2>
+      <a href="#contact" class="cta-button">Schedule Your Free Initial Consultation</a>
+    </div>
+    <div class="hero-image" style="background-image: url('static/img/megi_black.png'); background-size: contain; background-repeat: no-repeat; background-position: center; min-height: 600px; height: 100%;"></div>
+  </section>
+ 
+
+  <section class="section" id="about">
+    <div class="about-content">
+      <h3>Who I Am ?</h3>
+      <p>
+        I am Miglena Dimitrova, a corporate and competition attorney, entrepreneur, and legal tech enthusiast with 20 years of experience helping startups, scaleups, and international businesses navigate complex legal challenges with clarity and confidence.
+      </p>
+      <p>
+        I studied law at the University of National and World Economy in Sofia and completed an LL.M. in European Law at the University of Hamburg. I’ve been a qualified attorney since 2005, beginning my career in leading law firms where I gained hands-on experience in M&A, corporate law, and competition law.
+      </p>
+      <p>
+        In 2012, I founded MDMI Legal, a firm focused on corporate and gambling law, where I led major international transactions and regulatory projects. Later, in 2020, I launched Lawminded as a legal tech startup supporting founders and early-stage companies with fast, tailored legal solutions.
+      </p>
+      <p>
+        I created Legal Space of Miglena Dimitrova to offer a modern, business-oriented legal service — one that combines deep regulatory insight with clarity, agility, and a global outlook.
+      </p>
+      <div class="button-container">
+        <a href="#contact" class="cta-button">Let’s Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why-work-with-me">
+    <h3>Why Work With Me</h3>
+    <div class="icon-row">
+      <div class="icon-box">
+        <i class="fas fa-handshake"></i>
+        <strong>Partnership-Driven</strong>
+        <p>I build lasting relationships grounded in legal expertise, innovation, and real-world results.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-lightbulb"></i>
+        <strong>Strategic, Not Just Legal</strong>
+        <p>I go beyond standard legal advice by understanding your business model, market, and goals — so every legal move supports your broader strategy.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-comments"></i>
+        <strong>Clear Communication. Real Results.</strong>
+        <p>I listen closely, speak plainly, and stay focused on delivering tangible value, not just legal theory.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <strong>Transparent Pricing</strong>
+        <p>With fixed-fee pricing, there are no surprises. Quotes, files, and invoices are always shared clearly and up front.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-robot"></i>
+        <strong>Smart Legal Tech, Human Insight</strong>
+        <p>I use modern legal tech to streamline your experience — but the connection, guidance, and judgment are always human.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-chart-line"></i>
+        <strong>Growth-Focused Legal Support</strong>
+        <p>From startups to established companies, I craft legal strategies that protect and drive your growth at every stage.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-phone-alt"></i>
+        <strong>Responsive and Accessible</strong>
+        <p>You won’t be left waiting. I’m committed to your success and available when it matters most.</p>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-gavel"></i>
+        <strong>Legal Expertise</strong>
+        <p>Decades of experience in corporate, competition, and tech law to guide your business decisions.</p>
+      </div>
+    </div>
+    <div class="button-container">
+      <a href="#contact" class="cta-button">Ready to Transform Your Legal Experience?</a>
+    </div>
+  </section>
+<script>
+  const text = ["Legal ", "by ", "Miglena ", "Dimitrova."];
+  const target = document.getElementById("logo-text");
+  let wordIndex = 0;
+  let letterIndex = 0;
+  function typeLogo() {
+    if (wordIndex < text.length) {
+      const word = text[wordIndex];
+      if (letterIndex < word.length) {
+        target.textContent += word.charAt(letterIndex);
+        letterIndex++;
+        setTimeout(typeLogo, 80);
+      } else {
+        wordIndex++;
+        letterIndex = 0;
+        setTimeout(typeLogo, 100);
+      }
+    }
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+  typeLogo();
+  setTimeout(() => {
+    target.textContent = 'LM.';
+    setTimeout(() => {
+      target.textContent = '';
+      wordIndex = 0;
+      letterIndex = 0;
+      typeLogo();
+    }, 2000);
+  }, 2500);
+});
+</script>
+</body>
+</html>
