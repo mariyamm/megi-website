@@ -1062,7 +1062,11 @@
     padding: 2em 1em 1.5em 1em;
   }
 }
-
+@media (max-width: 900px) {
+  .footer-menu-col a {
+    margin-left: 0 !important;
+  }
+}
 
 .testimonial-section {
   background: linear-gradient(90deg, #fffbe7 60%, #fdf5f7 100%);
@@ -1235,6 +1239,25 @@
   }
 }
 
+.pulse-button {
+  animation: pulse 1.2s infinite;
+  box-shadow: 0 0 0 0 rgba(176,43,80,0.5);
+  transition: box-shadow 0.3s;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(176,43,80,0.5);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(176,43,80,0);
+    transform: scale(1.04);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(176,43,80,0);
+    transform: scale(1);
+  }
+}
   </style>
 </head>
 <body>
@@ -1493,28 +1516,6 @@
     <a href="YOUR_CALENDAR_LINK_HERE" target="_blank" class="cta-button pulse-button" style="font-size:1rem; padding:0.6em 1.4em; border-radius:6px;">Schedule a Meeting</a>
   </div>
 </section>
-<style>
-.pulse-button {
-  animation: pulse 1.2s infinite;
-  box-shadow: 0 0 0 0 rgba(176,43,80,0.5);
-  transition: box-shadow 0.3s;
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(176,43,80,0.5);
-    transform: scale(1);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(176,43,80,0);
-    transform: scale(1.04);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(176,43,80,0);
-    transform: scale(1);
-  }
-}
-</style>
-
 <!-- Contact Info Overlay -->
 <div id="contact-overlay">
   <div class="contact-modal">
@@ -1534,8 +1535,112 @@
   <div class="contact-backdrop"></div>
 </div>
 
+<footer style="background:#fff7f7; border-top:2px solid var(--gold); padding:2em 0 2.5em 0; margin-top:3em;">
+  <div class="footer-container" style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:2em;">
+    <!-- Logo Animation Section -->
+    <div class="footer-logo-col" style="flex:0 0 220px; min-width:180px; display:flex; align-items:flex-start;">
+      <a href="#" class="logo" style="font-size:1.5rem; display:block;">
+        <span id="footer-logo-text"></span>
+      </a>
+    </div>
+    <!-- Static Menu Section (lowered to align with contact info) -->
+    <nav class="footer-menu-col" style="flex:0 0 200px; min-width:160px; display:flex; flex-direction:column; gap:0.7em; margin-top:2.6em;">
+      <a href="#hero">Home</a>
+      <a href="#about">Who I Am</a>
+      <a href="#clients">Clients</a>
+      <a href="#why-luxury-split">Why Work With Me</a>
+      <a href="#specialties">Specialties</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- LinkedIn + Contact Info Section -->
+    <div class="footer-contact-col" style="flex:1; min-width:220px; display:flex; flex-direction:column; align-items:flex-end; gap:1.2em;">
+      <div class="footer-social" style="margin-bottom:0.7em;">
+        <a href="https://www.linkedin.com/in/miglena-dimitrova/" target="_blank" aria-label="LinkedIn" style="color:#B02B50; font-size:1.7em;">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+      <div class="footer-contact" style="text-align:right;">
+        <div style="margin-bottom:0.4em;">
+          <i class="fas fa-envelope" style="color:#C5B358; margin-right:0.5em;"></i>
+          <a href="mailto:miglena@lawminded.co" style="color:#B02B50; text-decoration:none; font-weight:600;">miglena@lawminded.co</a>
+        </div>
+        <div style="margin-bottom:0.4em;">
+          <i class="fas fa-phone" style="color:#C5B358; margin-right:0.5em;"></i>
+          <a href="tel:+359887408777" style="color:#B02B50; text-decoration:none; font-weight:600;">+359 887 408 777</a>
+        </div>
+        <div style="margin-bottom:0.4em;">
+          <i class="fas fa-map-marker-alt" style="color:#C5B358; margin-right:0.5em;"></i>
+          <span style="color:#232324;">76A, James Boucher Blvd., Business Centre Hill Tower</span>
+        </div>
+        <div style="margin-top:1em;">
+          <a href="YOUR_CALENDAR_LINK_HERE" target="_blank" class="cta-button pulse-button" style="font-size:1rem; padding:0.6em 1.4em; border-radius:6px;">Schedule a Meeting</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; color:#B02B50; font-size:0.95em; margin-top:1.5em; opacity:0.7;">
+    &copy; 2025 Legal by Miglena Dimitrova. All rights reserved.
+  </div>
+</footer>
 
-
+<style>
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.7em !important;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+  }
+  .footer-logo-col {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 0 !important;
+    align-items: center !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 0.1em;
+    padding-top: 0.2em;
+  }
+  .footer-menu-col {
+    
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.7em !important;
+    align-items: center !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3em !important;
+  }
+  .footer-contact-col {
+    width: 100% !important;
+    min-width: 0 !important;
+    align-items: center !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .footer-contact {
+    text-align: center !important;
+  }
+  .footer-social {
+    text-align: center !important;
+  }
+  footer {
+    padding-top: 0.7em !important;
+    padding-bottom: 0.7em !important;
+  }
+  footer > div:last-child {
+    font-size: 0.8em !important;
+    margin-top: 0.5em !important;
+  }
+}
+</style>
 
 <script>
 // Contact overlay logic
@@ -1745,6 +1850,57 @@ function typeClient() {
 }
 
 document.addEventListener('DOMContentLoaded', typeClient);
+
+// Animated footer logo (only this part is animated)
+const footerText = "Legal by Miglena Dimitrova.";
+const footerInitials = "LM.";
+const footerTarget = document.getElementById("footer-logo-text");
+
+function animateFooterLogo() {
+  if (!footerTarget) return;
+  if (window.innerWidth > 1024) {
+    let i = 0;
+    footerTarget.textContent = "";
+    footerTarget.style.opacity = 1;
+    function typeFull() {
+      if (i < footerText.length) {
+        footerTarget.textContent += footerText.charAt(i);
+        i++;
+        setTimeout(typeFull, 60);
+      } else {
+        setTimeout(() => {
+          footerTarget.style.opacity = 0;
+          setTimeout(() => {
+            footerTarget.textContent = footerInitials;
+            footerTarget.style.opacity = 1;
+            setTimeout(() => {
+              footerTarget.style.opacity = 0;
+              setTimeout(() => {
+                footerTarget.textContent = "";
+                footerTarget.style.opacity = 1;
+                animateFooterLogo(); // Loop again
+              }, 400);
+            }, 1200);
+          }, 400);
+        }, 1200);
+      }
+    }
+    typeFull();
+  } else {
+    footerTarget.textContent = "";
+    footerTarget.style.opacity = 1;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', animateFooterLogo);
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1024) {
+    animateFooterLogo();
+  } else if (footerTarget) {
+    footerTarget.textContent = "";
+    footerTarget.style.opacity = 1;
+  }
+});
 </script>
 </body>
 </html>
