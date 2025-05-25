@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Point to your sitemap when you have one
+Sitemap: https://miglenadimitrova.com/sitemap.xml
+
+# Uncomment these lines if you add admin or private areas later
+# Disallow: /admin/
+# Disallow: /private/
