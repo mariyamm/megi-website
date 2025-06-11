@@ -5,6 +5,11 @@ const mobileMenu = document.getElementById('mobile-menu');
 const closeMenuBtn = document.getElementById('close-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 const overlay = document.getElementById('mobile-menu-overlay');
+let logoAnimating = false;
+let logoTimeouts = [];
+
+let footerAnimating = false;
+let footerTimeouts = [];
 
 function openMenu() {
   mobileMenu.classList.add('open');
@@ -40,50 +45,72 @@ const text = "Legal by Miglena Dimitrova.";
 const initials = "LM.";
 const target = document.getElementById("logo-text");
 
-function animateLogo() {
-  if (window.innerWidth > 1024) {
-    let i = 0;
-    target.textContent = "";
-    target.style.opacity = 1;
-    function typeFull() {
-      if (i < text.length) {
-        target.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeFull, 60);
-      } else {
-        setTimeout(() => {
-          target.style.opacity = 0;
-          setTimeout(() => {
-            target.textContent = initials;
-            target.style.opacity = 1;
-            setTimeout(() => {
-              target.style.opacity = 0;
-              setTimeout(() => {
-                target.textContent = "";
-                target.style.opacity = 1;
-                animateLogo(); // Loop again
-              }, 400);
-            }, 1200);
-          }, 400);
-        }, 1200);
-      }
-    }
-    typeFull();
-  } else {
-    target.textContent = "";
-    target.style.opacity = 1;
-  }
+function clearLogoTimeouts() {
+  logoTimeouts.forEach(timeout => clearTimeout(timeout));
+  logoTimeouts = [];
 }
 
+function animateLogo() {
+  const target = document.getElementById("logo-text");
+  const text = "Legal by Miglena Dimitrova.";
+  const initials = "LM.";
+
+  if (!target || window.innerWidth <= 1024 || logoAnimating) return;
+
+  clearLogoTimeouts();
+  logoAnimating = true;
+
+  let i = 0;
+  target.textContent = "";
+  target.style.opacity = 1;
+
+  function typeFull() {
+    if (i < text.length) {
+      target.textContent += text.charAt(i);
+      i++;
+      logoTimeouts.push(setTimeout(typeFull, 60));
+    } else {
+      logoTimeouts.push(setTimeout(() => {
+        target.style.opacity = 0;
+
+        logoTimeouts.push(setTimeout(() => {
+          target.textContent = initials;
+          target.style.opacity = 1;
+
+          logoTimeouts.push(setTimeout(() => {
+            target.style.opacity = 0;
+
+            logoTimeouts.push(setTimeout(() => {
+              target.textContent = "";
+              target.style.opacity = 1;
+              logoAnimating = false;
+              animateLogo(); // Loop again
+            }, 400));
+          }, 1200));
+        }, 400));
+      }, 1200));
+    }
+  }
+
+  typeFull();
+}
+
+// ✅ Add these AFTER the animateLogo function definition
 window.addEventListener('DOMContentLoaded', animateLogo);
+
 window.addEventListener('resize', () => {
+  const target = document.getElementById("logo-text");
+  clearLogoTimeouts();
+  logoAnimating = false;
+
   if (window.innerWidth > 1024) {
     animateLogo();
-  } else {
+  } else if (target) {
     target.textContent = "";
     target.style.opacity = 1;
   }
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
   // Animate about-image if present
@@ -190,44 +217,64 @@ const footerText = "Legal by Miglena Dimitrova.";
 const footerInitials = "LM.";
 const footerTarget = document.getElementById("footer-logo-text");
 
-function animateFooterLogo() {
-  if (!footerTarget) return;
-  if (window.innerWidth > 1024) {
-    let i = 0;
-    footerTarget.textContent = "";
-    footerTarget.style.opacity = 1;
-    function typeFull() {
-      if (i < footerText.length) {
-        footerTarget.textContent += footerText.charAt(i);
-        i++;
-        setTimeout(typeFull, 60);
-      } else {
-        setTimeout(() => {
-          footerTarget.style.opacity = 0;
-          setTimeout(() => {
-            footerTarget.textContent = footerInitials;
-            footerTarget.style.opacity = 1;
-            setTimeout(() => {
-              footerTarget.style.opacity = 0;
-              setTimeout(() => {
-                footerTarget.textContent = "";
-                footerTarget.style.opacity = 1;
-                animateFooterLogo(); // Loop again
-              }, 400);
-            }, 1200);
-          }, 400);
-        }, 1200);
-      }
-    }
-    typeFull();
-  } else {
-    footerTarget.textContent = "";
-    footerTarget.style.opacity = 1;
-  }
+function clearFooterTimeouts() {
+  footerTimeouts.forEach(timeout => clearTimeout(timeout));
+  footerTimeouts = [];
 }
 
+function animateFooterLogo() {
+  const footerTarget = document.getElementById("footer-logo-text");
+  const footerText = "Legal by Miglena Dimitrova.";
+  const footerInitials = "LM.";
+
+  if (!footerTarget || window.innerWidth <= 1024 || footerAnimating) return;
+
+  clearFooterTimeouts();
+  footerAnimating = true;
+
+  let i = 0;
+  footerTarget.textContent = "";
+  footerTarget.style.opacity = 1;
+
+  function typeFull() {
+    if (i < footerText.length) {
+      footerTarget.textContent += footerText.charAt(i);
+      i++;
+      footerTimeouts.push(setTimeout(typeFull, 60));
+    } else {
+      footerTimeouts.push(setTimeout(() => {
+        footerTarget.style.opacity = 0;
+
+        footerTimeouts.push(setTimeout(() => {
+          footerTarget.textContent = footerInitials;
+          footerTarget.style.opacity = 1;
+
+          footerTimeouts.push(setTimeout(() => {
+            footerTarget.style.opacity = 0;
+
+            footerTimeouts.push(setTimeout(() => {
+              footerTarget.textContent = "";
+              footerTarget.style.opacity = 1;
+              footerAnimating = false;
+              animateFooterLogo(); // loop again
+            }, 400));
+          }, 1200));
+        }, 400));
+      }, 1200));
+    }
+  }
+
+  typeFull();
+}
+
+
 window.addEventListener('DOMContentLoaded', animateFooterLogo);
+
 window.addEventListener('resize', () => {
+  const footerTarget = document.getElementById("footer-logo-text");
+  clearFooterTimeouts();
+  footerAnimating = false;
+
   if (window.innerWidth > 1024) {
     animateFooterLogo();
   } else if (footerTarget) {
@@ -235,6 +282,7 @@ window.addEventListener('resize', () => {
     footerTarget.style.opacity = 1;
   }
 });
+
 
 
 // Contact overlay logic
